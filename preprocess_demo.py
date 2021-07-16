@@ -47,10 +47,11 @@ for folder in [train_folder, test_folder]:
         else:
             if filename.split("_")[0] > speaker:
                 speaker_id += 1
+                speaker = filename.split("_")[0]
         speaker_list.append(speaker_id)
     encoded = mu_law_encode(np.concatenate(data_list))
     filebytes = len(encoded) * (output_bit_depth//8)
-    save_dir = os.path.join("processed",split)
+    save_dir = os.path.join("processed", split)
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
     volume_no = 0
